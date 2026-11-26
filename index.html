@@ -1,31 +1,56 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>ApdalrhmanAlpop</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:sans-serif;background:#0f1220;color:#eee;display:flex;flex-direction:column;height:100vh}
-header{padding:12px;background:#1b2040;font-weight:bold;text-align:center}
-nav{display:flex}nav button{flex:1;padding:12px 2px;background:#151a33;color:#aab;border:0;font-size:15px}nav button.on{background:#2a3270;color:#fff}
-section{display:none;flex:1;overflow:auto;padding:10px}section.on{display:flex;flex-direction:column}
-#msgs{flex:1;overflow:auto}.m{margin:6px 0;padding:9px 12px;border-radius:12px;max-width:85%;white-space:pre-wrap}.u{background:#3b4bd8;margin-inline-start:auto}.b{background:#242a4d}
-form{display:flex;gap:6px;margin-top:8px}input{flex:1;padding:12px;border-radius:10px;border:0;background:#1b2040;color:#fff;font-size:16px}
-form button,.btn{padding:12px 16px;border:0;border-radius:10px;background:#4f63ff;color:#fff;font-size:15px}
-.card{display:block;background:#1b2040;border-radius:12px;padding:12px;margin:8px 0;color:#fff;text-decoration:none}.card small{color:#9ab;display:block;margin-top:4px}
-textarea{width:100%;padding:12px;border-radius:10px;border:0;background:#1b2040;color:#fff;font-size:16px}img.gen{width:100%;border-radius:12px;margin:8px 0}pre{background:#0a0d1a;padding:10px;border-radius:10px;overflow:auto;direction:ltr;text-align:left;white-space:pre-wrap;font-size:13px}iframe.run{width:100%;height:320px;border:0;background:#fff;border-radius:10px}</style></head><body>
-<header>ApdalrhmanAlpop <span id="ver" style="font-weight:normal;font-size:11px"></span></header>
-<nav><button class="on" data-t="chat">شات</button><button data-t="img">صور</button><button data-t="aud">صوت</button><button data-t="code">برمجة</button><button data-t="video">فيديو AI</button><button data-t="upd">تحديث</button></nav>
-<section id="chat" class="on"><div id="msgs"></div><form id="f"><input id="q" placeholder="اكتب رسالتك..." autocomplete="off"><button>إرسال</button></form></section>
-<section id="img"><div id="imgout" style="flex:1;overflow:auto"></div><form id="fi"><input id="iq" placeholder="وصف الصورة (عربي أو إنجليزي)" autocomplete="off"><button>اعمل</button></form></section>
-<section id="aud"><textarea id="at" rows="6" placeholder="اكتب النص اللي عايز تسمعه..."></textarea><div style="display:flex;gap:6px;margin-top:8px"><button class="btn" id="play">شغّل الصوت</button><button class="btn" id="stop" style="background:#555">وقف</button></div><p id="as"></p></section>
-<section id="code"><div id="codeout" style="flex:1;overflow:auto"></div><form id="fc"><input id="cq" placeholder="اوصف البرنامج اللي عايزه..." autocomplete="off"><button>اكتب</button></form></section>
-<section id="video"><div id="tools"></div></section>
-<section id="upd"><p id="us">جاهز.</p><button class="btn" onclick="checkUpdate()">دوّر على تحديث</button></section>
-<script>
-const VERSION=5, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#0b0d17"><title>ApdalrhmanAlpop</title><style>
+:root{--bg:#0b0d17;--card:#151a2e;--card2:#1c2340;--line:#262e52;--tx:#eef1ff;--mut:#8f98c4;--a:#7c5cff;--b:#22d3ee}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic",sans-serif;background:radial-gradient(1200px 600px at 80% -10%,#1a1f45 0,transparent 60%),var(--bg);color:var(--tx);display:flex;flex-direction:column;height:100vh;height:100dvh}
+header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:rgba(11,13,23,.8);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+header svg{width:34px;height:34px;filter:drop-shadow(0 4px 10px rgba(124,92,255,.5))}
+header b{font-size:17px;letter-spacing:.2px}header small{margin-inline-start:auto;color:var(--mut);font-size:11px;background:var(--card);padding:3px 8px;border-radius:99px}
+main{flex:1;position:relative;overflow:hidden}
+section{position:absolute;inset:0;display:none;flex-direction:column;padding:12px 14px;overflow:auto}
+section.on{display:flex;animation:in .3s ease}
+@keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.96) translateY(6px)}to{opacity:1;transform:none}}
+nav{display:flex;background:rgba(21,26,46,.95);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom))}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;color:var(--mut);font-size:11px;padding:6px 0;border-radius:12px;transition:.2s}
+nav button svg{width:22px;height:22px;transition:.2s}
+nav button.on{color:#fff}nav button.on svg{color:var(--b);transform:translateY(-2px) scale(1.12)}
+.list{flex:1;overflow:auto;display:flex;flex-direction:column;gap:2px}
+.m{margin:5px 0;padding:10px 14px;border-radius:18px;max-width:86%;white-space:pre-wrap;line-height:1.55;animation:pop .25s ease;word-break:break-word}
+.u{background:linear-gradient(135deg,var(--a),#5b6cff);margin-inline-start:auto;border-end-end-radius:6px}
+.b{background:var(--card);border:1px solid var(--line);border-end-start-radius:6px}
+.bar{display:flex;gap:8px;margin-top:10px;align-items:center}
+.bar input,textarea{flex:1;padding:13px 16px;border-radius:99px;border:1px solid var(--line);background:var(--card);color:var(--tx);font-size:16px;outline:0;transition:.2s}
+textarea{border-radius:16px;width:100%}
+.bar input:focus,textarea:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(124,92,255,.25)}
+.send,.btn{border:0;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));border-radius:99px;padding:12px 20px;font-size:15px;font-weight:600;transition:.15s;box-shadow:0 6px 18px rgba(124,92,255,.35)}
+.send{width:46px;height:46px;padding:0;display:grid;place-items:center}.send svg{width:20px;height:20px;transform:scaleX(-1)}
+.send:active,.btn:active{transform:scale(.93)}
+.btn.g{background:var(--card2);box-shadow:none}
+.card{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:6px 0;color:var(--tx);text-decoration:none;transition:.2s}
+.card:active{transform:scale(.98);border-color:var(--a)}.card small{display:block;color:var(--mut);margin-top:3px}.card::after{content:"\2039";font-size:24px;color:var(--b)}
+h3{margin:4px 2px 8px;font-size:15px;color:var(--mut);font-weight:600}
+img.gen{width:100%;border-radius:16px;margin:8px 0;animation:pop .4s ease}
+pre{background:#070912;padding:12px;border-radius:12px;overflow:auto;direction:ltr;text-align:left;white-space:pre-wrap;font-size:13px;border:1px solid var(--line)}
+iframe.run{width:100%;height:320px;border:0;background:#fff;border-radius:12px;margin-top:8px}
+.dots span{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:var(--b);animation:bl 1s infinite}.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes bl{0%,80%,100%{opacity:.25;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
+</style></head><body><header><svg viewBox="0 0 64 64"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M20 46L32 16l12 30M25 36h14" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M47 12l1.8 4.2L53 18l-4.2 1.8L47 24l-1.8-4.2L41 18l4.2-1.8z" fill="#fff"/></svg><b>ApdalrhmanAlpop</b><small id="ver"></small></header>
+<main>
+<section id="chat" class="on"><div class="list" id="msgs"></div><form class="bar" id="f"><input id="q" placeholder="اكتب رسالتك..." autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
+<section id="img"><div class="list" id="imgout"></div><form class="bar" id="fi"><input id="iq" placeholder="وصف الصورة (عربي أو إنجليزي)" autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
+<section id="aud"><h3>اكتب أي نص وهسمّعهولك</h3><textarea id="at" rows="7" placeholder="اكتب النص هنا..."></textarea><div class="bar"><button class="btn" id="play">شغّل الصوت</button><button class="btn g" id="stop">وقف</button></div><p id="as" style="color:var(--mut)"></p></section>
+<section id="code"><div class="list" id="codeout"></div><form class="bar" id="fc"><input id="cq" placeholder="اوصف البرنامج اللي عايزه..." autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
+<section id="video"><h3>مواقع توليد فيديو بالذكاء الاصطناعي</h3><div id="tools"></div></section>
+<section id="upd"><h3>التحديثات</h3><div class="card" style="display:block" id="us">جاهز.</div><button class="btn" onclick="checkUpdate()">دوّر على تحديث</button></section>
+</main>
+<nav><button class="on" data-t="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>شات</span></button><button data-t="img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.7"/><path d="M21 16l-5-5-8 8"/></svg><span>صور</span></button><button data-t="aud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg><span>صوت</span></button><button data-t="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg><span>برمجة</span></button><button data-t="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10l5-3v10l-5-3z"/></svg><span>فيديو</span></button><button data-t="upd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10l4 4 4-4M5 19h14"/></svg><span>تحديث</span></button></nav><script>const VERSION=6, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
 document.getElementById('ver').textContent='v'+VERSION;
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,section').forEach(e=>e.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on')});
 const T=[["PixVerse","https://app.pixverse.ai","رصيد يومي مجاني + صوت"],["Pika","https://pika.art","كريدت مجاني"],["Luma Dream Machine","https://lumalabs.ai/dream-machine","كليبات مجانية محدودة"],["Pollo AI","https://pollo.ai","كريدت يومي صغير"],["Hedra","https://www.hedra.com","شخصيات بتتكلم"],["Higgsfield","https://higgsfield.ai","كريدت مجاني"],["Google Flow","https://labs.google/flow","حسب حسابك"],["Google Vids","https://docs.google.com/videos","حصة شهرية"],["Freepik","https://www.freepik.com/ai/video-generator","كريدت يومي"],["Leonardo","https://app.leonardo.ai","رصيد يومي"],["Krea","https://www.krea.ai","فيديو مجاني محدود"],["Dzine","https://www.dzine.ai","كريدت مجاني"]];
-document.getElementById('tools').innerHTML='<p>كل موقع له حد مجاني. اتفتح في المتصفح وسجل بحسابك.</p>'+T.map(t=>`<a class="card" href="${t[1]}" target="_blank">${t[0]}<small>${t[2]}</small></a>`).join('');
+document.getElementById('tools').innerHTML=T.map(t=>`<a class="card" href="${t[1]}" target="_blank">${t[0]}<small>${t[2]}</small></a>`).join('');
 const msgs=document.getElementById('msgs');let hist=JSON.parse(localStorage.h||'[]');
-function add(r,t){const d=document.createElement('div');d.className='m '+(r=='user'?'u':'b');d.textContent=t;msgs.appendChild(d);msgs.scrollTop=1e9;return d}
+const DOTS='<span class="dots"><span></span><span></span><span></span></span>';
+function add(r,t,html){const d=document.createElement('div');d.className='m '+(r=='user'?'u':'b');if(html)d.innerHTML=t;else d.textContent=t;msgs.appendChild(d);msgs.scrollTop=1e9;return d}
 hist.forEach(m=>add(m.role,m.content));if(!hist.length)add('assistant','أهلاً! أنا ApdalrhmanAlpop. اسألني أي حاجة بالعربي.');
 const SYS='انت ApdalrhmanAlpop، مساعد ذكي جوه تطبيق موبايل بيتكلم مصري عامية بشكل طبيعي وودود. اشرح بالتفصيل وبخطوات واضحة لما السؤال محتاج، واختصر لما السؤال بسيط. التطبيق فيه تابات: شات، وفيديو AI (روابط لمواقع بتولّد فيديو مجاناً زي PixVerse وPika وLuma وPollo وHedra وHiggsfield وFlow وVids وFreepik وLeonardo وKrea وDzine)، وتحديث. التطبيق فيه كمان تاب صور (بيولّد صور مجاناً)، وتاب صوت (بيقرا أي نص بصوت)، وتاب برمجة (بيكتب كود ويشغّل صفحات HTML). انت نفسك مبتولّدش فيديو، بس بتساعد في كل اللي حواليه: كتابة فكرة وسيناريو مشهد بمشهد، كتابة برومبت جاهز بالإنجليزي للصقه في موقع الفيديو (وصف الشخصيات والكاميرا والإضاءة والحركة والحوار)، اقتراح الموقع الأنسب وإزاي تستغل الرصيد المجاني، عناوين ووصف وهاشتاجات لليوتيوب، وأفكار قنوات. لو حد طلب فيديو، متقولش مقدرش وبس: اسأله عن الفكرة والمدة واللغة، اكتب له البرومبت، ووجهه لتاب فيديو AI يفتح الموقع المناسب. متخترعش معلومات عن حدود المواقع المجانية ولو مش متأكد قول كده.';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -42,24 +67,27 @@ async function ask(h,own){const msgs=(h[0]&&h[0].role=='system')?h:[{role:'syste
    if(a&&a.trim())return a.trim();err='رد فاضي'}
   catch(e){err=navigator.onLine?'مفيش اتصال بالخدمة':'مفيش إنترنت';await sleep(1500*(i+1))}}
  throw new Error(err||'فشل')}
-document.getElementById('f').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('q');const t=q.value.trim();if(!t)return;q.value='';add('user',t);hist.push({role:'user',content:t});const w=add('assistant','...بفكر');
- try{const a=await ask(hist);w.textContent=a;hist.push({role:'assistant',content:a});localStorage.h=JSON.stringify(hist.slice(-40))}
- catch(x){hist.pop();w.textContent='معرفتش أرد: '+x.message+'. اتأكد من النت وجرب تاني بعد شوية.'}};
-
 // ---- images ----
-function iAdd(h){const d=document.createElement('div');d.className='m b';d.style.maxWidth='100%';d.innerHTML=h;const o=document.getElementById('imgout');o.appendChild(d);o.scrollTop=1e9;return d}
-async function toEnglish(t){if(!/[\u0600-\u06FF]/.test(t))return t;try{const a=await ask([{role:'user',content:'Translate this into a short detailed English image-generation prompt. Reply with only the prompt: '+t}]);return a.replace(/^["']|["']$/g,'')}catch(e){return t}}
-async function horde(prompt){const H={'apikey':'0000000000','Content-Type':'application/json','Client-Agent':'apdalrhmanalpop:4:app'};
- const r=await fetch('https://aihorde.net/api/v2/generate/async',{method:'POST',headers:H,body:JSON.stringify({prompt:prompt,params:{width:512,height:512,steps:20,n:1},nsfw:false,models:['stable_diffusion']})});
+function iAdd(h,u){const d=document.createElement('div');d.className='m '+(u?'u':'b');d.style.maxWidth=u?'86%':'100%';d.innerHTML=h;const o=document.getElementById('imgout');o.appendChild(d);o.scrollTop=1e9;return d}
+async function toEnglish(t){const ar=/[\u0600-\u06FF]/.test(t);try{const a=await ask([{role:'user',content:'Turn this into ONE detailed English text-to-image prompt. Keep every subject and the exact interaction between them. Auto-pick the style from the request: if it asks for a photo, a person, a place or anything real, make it photorealistic (camera, lens, lighting); if it is a cartoon, animal character, fantasy or children-style, make it a polished illustration. Reply with only the prompt, max 60 words'+(ar?' (translate from Arabic)':'')+': '+t}]);return a.replace(/^["'\s]+|["'\s]+$/g,'')}catch(e){return t}}
+async function flux(prompt){const S='https://black-forest-labs-flux-1-schnell.hf.space';
+ const r=await fetch(S+'/gradio_api/call/infer',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({data:[prompt,0,true,1024,1024,4]})});
+ const j=await r.json();if(!j.event_id)throw new Error('flux');
+ const e=await (await fetch(S+'/gradio_api/call/infer/'+j.event_id)).text();
+ const m=e.match(/"url":\s*"([^"]+)"/);if(!m)throw new Error('flux quota');return m[1]}
+async function horde(prompt,models,w,h){const H={'apikey':'0000000000','Content-Type':'application/json','Client-Agent':'apdalrhmanalpop:6:app'};
+ const r=await fetch('https://aihorde.net/api/v2/generate/async',{method:'POST',headers:H,body:JSON.stringify({prompt:prompt+', highly detailed, sharp focus, professional quality',params:{width:w,height:h,steps:models[0]=='stable_diffusion'?22:28,n:1,cfg_scale:7},nsfw:false,models:models,r2:true})});
  const j=await r.json();if(!j.id)throw new Error(j.message||'horde');
- for(let i=0;i<40;i++){await sleep(3000);const c=await (await fetch('https://aihorde.net/api/v2/generate/check/'+j.id)).json();if(c.faulted)throw new Error('faulted');if(c.done){const s=await (await fetch('https://aihorde.net/api/v2/generate/status/'+j.id)).json();const g=s.generations&&s.generations[0];if(g&&g.img)return g.img;throw new Error('no img')}}
+ for(let i=0;i<45;i++){await sleep(3000);const c=await (await fetch('https://aihorde.net/api/v2/generate/check/'+j.id)).json();if(c.faulted)throw new Error('faulted');if(c.done){const s=await (await fetch('https://aihorde.net/api/v2/generate/status/'+j.id)).json();const g=s.generations&&s.generations[0];if(g&&g.img)return g.img;throw new Error('no img')}}
  throw new Error('timeout')}
-async function polli(prompt){const u='https://image.pollinations.ai/prompt/'+encodeURIComponent(prompt)+'?model=sana&width=512&height=512&nologo=true&seed='+Math.floor(Math.random()*1e6);
+async function polli(prompt){const u='https://image.pollinations.ai/prompt/'+encodeURIComponent(prompt)+'?model=sana&width=768&height=768&nologo=true&seed='+Math.floor(Math.random()*1e6);
  const r=await fetch(u);if(!r.ok)throw new Error('polli '+r.status);const b=await r.blob();return URL.createObjectURL(b)}
 document.getElementById('fi').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('iq');const t=q.value.trim();if(!t)return;q.value='';
- iAdd(t.replace(/</g,'&lt;'));const w=iAdd('...بجهّز الصورة (ممكن ياخد لحد دقيقة)');
- try{const en=await toEnglish(t);let url;try{url=await horde(en)}catch(x1){url=await polli(en)}
-  w.innerHTML='<img class="gen" src="'+url+'"><a href="'+url+'" target="_blank" style="color:#9ab">فتح الصورة (اضغط مطولاً للحفظ)</a>'}
+ iAdd(t.replace(/</g,'&lt;'),1);const w=iAdd(DOTS+' بجهّز الصورة (لحد دقيقة)');
+ try{const en=await toEnglish(t);let url;
+  try{url=await flux(en)}catch(x0){try{url=await horde(en,['AlbedoBase XL (SDXL)','AlbedoBase XL 3.1','Juggernaut XL','SDXL 1.0'],768,768)}
+  catch(x1){try{url=await horde(en,['stable_diffusion'],512,512)}catch(x2){url=await polli(en)}}}
+  w.innerHTML='<img class="gen" src="'+url+'"><div style="color:var(--mut);font-size:12px;direction:ltr;text-align:left">'+en.replace(/</g,'&lt;')+'</div><a href="'+url+'" target="_blank" style="color:var(--b);font-size:13px">فتح الصورة (اضغط مطولاً للحفظ)</a>'}
  catch(x){w.textContent='معرفتش أعمل الصورة: '+x.message+'. جرب تاني بعد شوية.'}};
 // ---- audio ----
 let aud=null,stopFlag=false;
@@ -77,13 +105,13 @@ function esc(x){return x.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
 function cAdd(h){const d=document.createElement('div');d.className='m b';d.style.maxWidth='100%';d.innerHTML=h;const o=document.getElementById('codeout');o.appendChild(d);o.scrollTop=1e9;return d}
 window.__code=[];
 function renderCode(text){let out='';const parts=text.split(/```/);parts.forEach((p,i)=>{if(i%2==0){out+='<div style="white-space:pre-wrap">'+esc(p)+'</div>'}else{const m=p.match(/^(\w*)\n/);const lang=m?m[1].toLowerCase():'';const body=m?p.slice(m[0].length):p;const id=window.__code.push(body)-1;
- out+='<pre>'+esc(body)+'</pre><button class="btn" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.__code['+id+'])">نسخ</button>';
- if(lang=='html'||/^\s*<(!doctype|html)/i.test(body))out+=' <button class="btn" onclick="runCode('+id+',this)">شغّل</button>'}});return out}
+ out+='<pre>'+esc(body)+'</pre><button class="btn g" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.__code['+id+'])">نسخ</button>';
+ if(lang=='html'||/^\s*<(!doctype|html)/i.test(body))out+=' <button class="btn" style="margin-inline-start:6px" onclick="runCode('+id+',this)">شغّل</button>'}});return out}
 window.runCode=(id,b)=>{const f=document.createElement('iframe');f.className='run';f.setAttribute('sandbox','allow-scripts');f.srcdoc=window.__code[id];b.parentNode.appendChild(f)};
 document.getElementById('fc').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('cq');const t=q.value.trim();if(!t)return;q.value='';
- cAdd(esc(t));const w=cAdd('...بكتب الكود');
+ cAdd(esc(t));const w=cAdd(DOTS);
  try{const a=await ask([{role:'system',content:CSYS},{role:'user',content:t}],true);w.innerHTML=renderCode(a)}catch(x){w.textContent='معرفتش أكتب الكود: '+x.message}};
 async function checkUpdate(){const s=document.getElementById('us');const av=(window.Android&&Android.appVersion)?Android.appVersion():0;
-try{const j=await (await fetch(UPDATE_URL+'?t='+Date.now())).json();if(j.apk_version>av){s.innerHTML='فيه نسخة تطبيق جديدة. <button class="btn" onclick="Android.download(\''+j.apk+'\')">حمّلها</button>'}else{s.textContent='التطبيق محدّث. نسخة الواجهة '+VERSION+' بتتحدث لوحدها.'}}catch(e){s.textContent='مقدرتش أتصل بالتحديث.'}}
+try{const j=await (await fetch(UPDATE_URL+'?t='+Date.now())).json();if(j.apk_version>av){s.innerHTML='فيه نسخة تطبيق جديدة (شكل جديد وأيقونة جديدة). <br><br><button class="btn" onclick="Android.download(\''+j.apk+'\')">حمّلها</button>'}else{s.textContent='التطبيق محدّث. نسخة الواجهة '+VERSION+' بتتحدث لوحدها.'}}catch(e){s.textContent='مقدرتش أتصل بالتحديث.'}}
 checkUpdate();
 </script></body></html>
