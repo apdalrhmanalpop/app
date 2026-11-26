@@ -44,7 +44,7 @@ iframe.run{width:100%;height:320px;border:0;background:#fff;border-radius:12px;m
 <section id="upd"><h3>التحديثات</h3><div class="card" style="display:block" id="us">جاهز.</div><button class="btn" onclick="checkUpdate()">دوّر على تحديث</button>
 <h3 style="margin-top:22px">لوحة المالك (محمية بكود)</h3><div id="admin"></div></section>
 </main>
-<nav><button class="on" data-t="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>شات</span></button><button data-t="img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.7"/><path d="M21 16l-5-5-8 8"/></svg><span>صور</span></button><button data-t="aud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg><span>صوت</span></button><button data-t="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg><span>برمجة</span></button><button data-t="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10l5-3v10l-5-3z"/></svg><span>فيديو</span></button><button data-t="upd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>إعدادات</span></button></nav><script>const VERSION=7, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
+<nav><button class="on" data-t="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>شات</span></button><button data-t="img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.7"/><path d="M21 16l-5-5-8 8"/></svg><span>صور</span></button><button data-t="aud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg><span>صوت</span></button><button data-t="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg><span>برمجة</span></button><button data-t="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10l5-3v10l-5-3z"/></svg><span>فيديو</span></button><button data-t="upd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>إعدادات</span></button></nav><script>const VERSION=8, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
 document.getElementById('ver').textContent='v'+VERSION;
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,section').forEach(e=>e.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on')});
 const T=[["PixVerse","https://app.pixverse.ai","رصيد يومي مجاني + صوت"],["Pika","https://pika.art","كريدت مجاني"],["Luma Dream Machine","https://lumalabs.ai/dream-machine","كليبات مجانية محدودة"],["Pollo AI","https://pollo.ai","كريدت يومي صغير"],["Hedra","https://www.hedra.com","شخصيات بتتكلم"],["Higgsfield","https://higgsfield.ai","كريدت مجاني"],["Google Flow","https://labs.google/flow","حسب حسابك"],["Google Vids","https://docs.google.com/videos","حصة شهرية"],["Freepik","https://www.freepik.com/ai/video-generator","كريدت يومي"],["Leonardo","https://app.leonardo.ai","رصيد يومي"],["Krea","https://www.krea.ai","فيديو مجاني محدود"],["Dzine","https://www.dzine.ai","كريدت مجاني"]];
@@ -91,39 +91,36 @@ document.getElementById('fi').onsubmit=async e=>{e.preventDefault();const q=docu
   w.innerHTML='<img class="gen" src="'+url+'"><div style="color:var(--mut);font-size:12px;direction:ltr;text-align:left">'+en.replace(/</g,'&lt;')+'</div><a href="'+url+'" target="_blank" style="color:var(--b);font-size:13px">فتح الصورة (اضغط مطولاً للحفظ)</a>'}
  catch(x){w.textContent='معرفتش أعمل الصورة: '+x.message+'. جرب تاني بعد شوية.'}};
 // ---- audio ----
+const PROXY="https://script.google.com/macros/s/AKfycbwSToCQVgHbWR4NLgBGmN4YNPi_XdtP6Lq0jbXai9FthPsCbXiOvj__rfIXmfG_pkNm/exec";
+async function px(action,model,body){const r=await fetch(PROXY,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify({action,model,body}),redirect:'follow'});const j=await r.json();if(j.ok===false)throw new Error(j.error||'proxy');return j}
+function b64wav(b){const bin=atob(b);const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return URL.createObjectURL(new Blob([u],{type:'audio/wav'}))}
+async function gemTTS(t){const j=await px('tts','gemini-3.8-flash-lite-tts',{contents:[{parts:[{text:t}]}],generationConfig:{responseModalities:['AUDIO'],speechConfig:{voiceConfig:{prebuiltVoiceConfig:{voiceName:'Kore'}}}}});if(j.status!=200)throw new Error('tts '+j.status);const p=j.data.candidates[0].content.parts.find(x=>x.inlineData);if(!p)throw new Error('tts empty');return b64wav(p.inlineData.data)}
+async function speakAny(t,cs){const lang=/[\u0600-\u06FF]/.test(t)?'ar':'en';
+ try{const parts=chunks2(t);for(const c of parts){if(stopFlag)return;await playUrl(await gemTTS(c))}return}catch(e){}
+ try{for(const c of chunks(t)){if(stopFlag)return;await playUrl('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl='+lang+'&q='+encodeURIComponent(c))}return}catch(e){}
+ await speakLocal(t)}
+function chunks2(t){const out=[];let cur='';t.split(/(?<=[.!?؟\n])\s*/).forEach(p=>{if((cur+' '+p).length>450){if(cur)out.push(cur);cur=p}else cur=(cur+' '+p).trim()});if(cur)out.push(cur);return out.filter(x=>x.trim())}
+
 let aud=null,stopFlag=false;
 function chunks(t){const out=[];let cur='';t.split(/(?<=[.!?؟،,\n])\s*/).forEach(p=>{if((cur+' '+p).length>170){if(cur)out.push(cur);cur=p}else cur=(cur+' '+p).trim()});if(cur)out.push(cur);return out.flatMap(c=>{const r=[];while(c.length>170){r.push(c.slice(0,170));c=c.slice(170)}r.push(c);return r}).filter(x=>x.trim())}
 function playUrl(u){return new Promise((res,rej)=>{aud=new Audio(u);aud.onended=res;aud.onerror=()=>rej(new Error('audio'));aud.play().catch(rej)})}
 function speakLocal(t){return new Promise((res,rej)=>{if(!window.speechSynthesis)return rej(new Error('no tts'));const u=new SpeechSynthesisUtterance(t);u.lang='ar-EG';u.onend=res;u.onerror=()=>rej(new Error('tts'));speechSynthesis.speak(u)})}
 document.getElementById('stop').onclick=()=>{stopFlag=true;if(aud)aud.pause();if(window.speechSynthesis)speechSynthesis.cancel()};
 document.getElementById('play').onclick=async()=>{const t=document.getElementById('at').value.trim();const s=document.getElementById('as');if(!t)return;stopFlag=false;s.textContent='بشغّل...';
- const lang=/[\u0600-\u06FF]/.test(t)?'ar':'en';const cs=chunks(t);
- try{for(const c of cs){if(stopFlag)break;await playUrl('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl='+lang+'&q='+encodeURIComponent(c))}s.textContent=''}
- catch(e){try{s.textContent='بجرب صوت الموبايل...';await speakLocal(t);s.textContent=''}catch(e2){s.textContent='الصوت مشتغلش: '+e2.message}}};
-// ---- code ----
-const CSYS='You are an expert programmer. Reply in Egyptian Arabic for explanations, but code and comments in English. For anything that can run in a browser, deliver ONE complete self-contained HTML file (inline CSS and JS) inside a single ```html block so it can run directly. Otherwise give complete code in a fenced block with the language name, then a short explanation of how to run it.';
-function esc(x){return x.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
-function cAdd(h){const d=document.createElement('div');d.className='m b';d.style.maxWidth='100%';d.innerHTML=h;const o=document.getElementById('codeout');o.appendChild(d);o.scrollTop=1e9;return d}
-window.__code=[];
-function renderCode(text){let out='';const parts=text.split(/```/);parts.forEach((p,i)=>{if(i%2==0){out+='<div style="white-space:pre-wrap">'+esc(p)+'</div>'}else{const m=p.match(/^(\w*)\n/);const lang=m?m[1].toLowerCase():'';const body=m?p.slice(m[0].length):p;const id=window.__code.push(body)-1;
- out+='<pre>'+esc(body)+'</pre><button class="btn g" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.__code['+id+'])">نسخ</button>';
- if(lang=='html'||/^\s*<(!doctype|html)/i.test(body))out+=' <button class="btn" style="margin-inline-start:6px" onclick="runCode('+id+',this)">شغّل</button>'}});return out}
-window.runCode=(id,b)=>{const f=document.createElement('iframe');f.className='run';f.setAttribute('sandbox','allow-scripts');f.srcdoc=window.__code[id];b.parentNode.appendChild(f)};
-document.getElementById('fc').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('cq');const t=q.value.trim();if(!t)return;q.value='';
- cAdd(esc(t));const w=cAdd(DOTS);
- try{const a=await ask([{role:'system',content:CSYS},{role:'user',content:t}],true);w.innerHTML=renderCode(a)}catch(x){w.textContent='معرفتش أكتب الكود: '+x.message}};
-// ---- v7: gemini, vision, voice, admin ----
+ try{await speakAny(t);s.textContent=''}catch(e2){s.textContent='الصوت مشتغلش: '+e2.message}};
 function sysNow(){const i=localStorage.ins;return SYS+(i?'\nتعليمات إضافية من المالك (التزم بيها): '+i:'')}
-const GM=['gemini-3.6-flash','gemini-3.5-flash-lite'];
-async function gem(contents,system){const key=localStorage.gk;if(!key)throw new Error('nokey');let last='';
- for(const m of GM){try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:contents})});
-  if(r.status==400||r.status==403){const j=await r.json().catch(()=>({}));const msg=(j.error&&j.error.message)||'';if(/API key|PERMISSION|not valid/i.test(msg)||r.status==403)throw new Error('badkey');last=msg;continue}
-  if(r.status==429||r.status==404||r.status>=500){last='busy '+r.status;continue}
-  const j=await r.json();const c=j.candidates&&j.candidates[0];const t=c&&c.content&&c.content.parts?c.content.parts.map(p=>p.text||'').join('').trim():'';if(t)return t;last='empty'}
+const GM=['gemini-3.5-flash-lite','gemini-3.6-flash'];
+async function gem(contents,system){const key=localStorage.gk;let last='';
+ for(const m of GM){try{let st,j;const body={systemInstruction:{parts:[{text:system}]},contents:contents};
+  if(key){const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify(body)});st=r.status;j=await r.json().catch(()=>({}))}
+  else{const r=await px('chat',m,body);st=r.status;j=r.data||{}}
+  if(key&&(st==400||st==403)){const msg=(j.error&&j.error.message)||'';if(/API key|PERMISSION|not valid/i.test(msg)||st==403)throw new Error('badkey');last=msg;continue}
+  if(st==429||st==404||st>=500||st==400){last='busy '+st;continue}
+  const c=j.candidates&&j.candidates[0];const t=c&&c.content&&c.content.parts?c.content.parts.map(p=>p.text||'').join('').trim():'';if(t)return t;last='empty'}
  catch(e){if(e.message=='badkey')throw e;last=e.message}}
  throw new Error('gem '+last)}
 function toContents(h){return h.filter(x=>x.role!='system').slice(-12).map(x=>({role:x.role=='assistant'?'model':'user',parts:[{text:x.content}]}))}
-async function tryGem(h){if(!localStorage.gk)return null;try{const sys=(h[0]&&h[0].role=='system')?h[0].content:sysNow();return await gem(toContents(h),sys)}catch(e){if(e.message=='badkey')throw new Error('مفتاح Gemini مش شغال. غيّره من الإعدادات.');return null}}
+async function tryGem(h){try{const sys=(h[0]&&h[0].role=='system')?h[0].content:sysNow();return await gem(toContents(h),sys)}catch(e){if(e.message=='badkey')throw new Error('مفتاح Gemini مش شغال. غيّره من الإعدادات.');return null}}
 // attachments
 let pend=null;
 const attEl=document.getElementById('att'),fileIn=document.getElementById('fileIn');
@@ -138,15 +135,14 @@ fileIn.onchange=async()=>{const f=fileIn.files[0];fileIn.value='';if(!f)return;c
  else throw 0;showAtt()}catch(e){add('assistant','مقدرتش أقرا الملف ده.')}};
 // voice replies
 let vstop=false;
-async function speakReply(t){if(localStorage.vo!='1')return;t=t.replace(/```[\s\S]*?```/g,' ').replace(/[*#_`>]/g,'').slice(0,700);if(!t.trim())return;stopFlag=false;const lang=/[\u0600-\u06FF]/.test(t)?'ar':'en';
- try{for(const c of chunks(t)){if(stopFlag)break;await playUrl('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl='+lang+'&q='+encodeURIComponent(c))}}catch(e){try{await speakLocal(t)}catch(e2){}}}
+async function speakReply(t){if(localStorage.vo!='1')return;t=t.replace(/```[\s\S]*?```/g,' ').replace(/[*#_`>]/g,'').slice(0,700);if(!t.trim())return;stopFlag=false;try{await speakAny(t)}catch(e){}}
 // chat
 document.getElementById('f').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('q');let t=q.value.trim();if(!t&&!pend)return;q.value='';
  const p=pend;
  if(p){t=t||(p.kind=='video'?'دي لقطات متتالية من فيديو. اشرح اللي بيحصل فيه.':'اوصف الصورة دي بالتفصيل.');const d=add('user','',1);d.innerHTML='<img src="'+p.thumb+'" style="max-width:180px;border-radius:12px;display:block;margin-bottom:6px">'+t.replace(/</g,'&lt;');pend=null;showAtt()}else add('user',t);
  hist.push({role:'user',content:p?('['+(p.kind=='video'?'فيديو':'صورة')+'] '+t):t});const w=add('assistant',DOTS,1);
  try{let a;
-  if(p){if(!localStorage.gk){hist.pop();w.textContent='عشان أشوف الصور والفيديو محتاج مفتاح Gemini المجاني. افتح الإعدادات > لوحة المالك وحطه (دقيقة واحدة).';return}
+  if(p){if(false){hist.pop();w.textContent='عشان أشوف الصور والفيديو محتاج مفتاح Gemini المجاني. افتح الإعدادات > لوحة المالك وحطه (دقيقة واحدة).';return}
    const c=toContents(hist.slice(0,-1));c.push({role:'user',parts:[{text:(p.kind=='video'?'اللقطات دي مأخوذة بالترتيب من فيديو. ':'')+t},...p.parts]});a=await gem(c,sysNow())}
   else a=await ask(hist);
   w.textContent=a;hist.push({role:'assistant',content:a});localStorage.h=JSON.stringify(hist.slice(-40));speakReply(a)}
