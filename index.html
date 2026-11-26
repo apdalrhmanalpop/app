@@ -24,10 +24,10 @@ textarea{border-radius:16px;width:100%}
 .bar input:focus,textarea:focus{border-color:var(--a);box-shadow:0 0 0 3px rgba(124,92,255,.25)}
 .send,.btn{border:0;color:#fff;background:linear-gradient(135deg,var(--a),var(--b));border-radius:99px;padding:12px 20px;font-size:15px;font-weight:600;transition:.15s;box-shadow:0 6px 18px rgba(124,92,255,.35)}
 .send{width:46px;height:46px;padding:0;display:grid;place-items:center}.send svg{width:20px;height:20px;transform:scaleX(-1)}
-.send:active,.btn:active{transform:scale(.93)}
+.send.g{background:var(--card2);box-shadow:none;color:var(--b)}.send:active,.btn:active{transform:scale(.93)}
 .btn.g{background:var(--card2);box-shadow:none}
 .card{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin:6px 0;color:var(--tx);text-decoration:none;transition:.2s}
-.card:active{transform:scale(.98);border-color:var(--a)}.card small{display:block;color:var(--mut);margin-top:3px}.card::after{content:"\2039";font-size:24px;color:var(--b)}
+div.card::after{content:none}.card:active{transform:scale(.98);border-color:var(--a)}.card small{display:block;color:var(--mut);margin-top:3px}.card::after{content:"\2039";font-size:24px;color:var(--b)}
 h3{margin:4px 2px 8px;font-size:15px;color:var(--mut);font-weight:600}
 img.gen{width:100%;border-radius:16px;margin:8px 0;animation:pop .4s ease}
 pre{background:#070912;padding:12px;border-radius:12px;overflow:auto;direction:ltr;text-align:left;white-space:pre-wrap;font-size:13px;border:1px solid var(--line)}
@@ -36,14 +36,15 @@ iframe.run{width:100%;height:320px;border:0;background:#fff;border-radius:12px;m
 @keyframes bl{0%,80%,100%{opacity:.25;transform:scale(.7)}40%{opacity:1;transform:scale(1)}}
 </style></head><body><header><svg viewBox="0 0 64 64"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#lg)"/><path d="M20 46L32 16l12 30M25 36h14" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M47 12l1.8 4.2L53 18l-4.2 1.8L47 24l-1.8-4.2L41 18l4.2-1.8z" fill="#fff"/></svg><b>ApdalrhmanAlpop</b><small id="ver"></small></header>
 <main>
-<section id="chat" class="on"><div class="list" id="msgs"></div><form class="bar" id="f"><input id="q" placeholder="اكتب رسالتك..." autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
+<section id="chat" class="on"><div class="list" id="msgs"></div><div id="att" style="display:none;margin-top:8px"></div><form class="bar" id="f"><button type="button" class="send g" id="attb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12l-8.5 8.5a5 5 0 0 1-7-7L14 5a3.5 3.5 0 0 1 5 5l-8.5 8.5a2 2 0 0 1-3-3L15 8"/></svg></button><button type="button" class="send g" id="micb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><input id="q" placeholder="اكتب رسالتك..." autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form><input type="file" id="fileIn" accept="image/*,video/*" style="display:none"></section>
 <section id="img"><div class="list" id="imgout"></div><form class="bar" id="fi"><input id="iq" placeholder="وصف الصورة (عربي أو إنجليزي)" autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
 <section id="aud"><h3>اكتب أي نص وهسمّعهولك</h3><textarea id="at" rows="7" placeholder="اكتب النص هنا..."></textarea><div class="bar"><button class="btn" id="play">شغّل الصوت</button><button class="btn g" id="stop">وقف</button></div><p id="as" style="color:var(--mut)"></p></section>
 <section id="code"><div class="list" id="codeout"></div><form class="bar" id="fc"><input id="cq" placeholder="اوصف البرنامج اللي عايزه..." autocomplete="off"><button class="send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></button></form></section>
 <section id="video"><h3>مواقع توليد فيديو بالذكاء الاصطناعي</h3><div id="tools"></div></section>
-<section id="upd"><h3>التحديثات</h3><div class="card" style="display:block" id="us">جاهز.</div><button class="btn" onclick="checkUpdate()">دوّر على تحديث</button></section>
+<section id="upd"><h3>التحديثات</h3><div class="card" style="display:block" id="us">جاهز.</div><button class="btn" onclick="checkUpdate()">دوّر على تحديث</button>
+<h3 style="margin-top:22px">لوحة المالك (محمية بكود)</h3><div id="admin"></div></section>
 </main>
-<nav><button class="on" data-t="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>شات</span></button><button data-t="img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.7"/><path d="M21 16l-5-5-8 8"/></svg><span>صور</span></button><button data-t="aud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg><span>صوت</span></button><button data-t="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg><span>برمجة</span></button><button data-t="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10l5-3v10l-5-3z"/></svg><span>فيديو</span></button><button data-t="upd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v10M8 10l4 4 4-4M5 19h14"/></svg><span>تحديث</span></button></nav><script>const VERSION=6, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
+<nav><button class="on" data-t="chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span>شات</span></button><button data-t="img"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="1.7"/><path d="M21 16l-5-5-8 8"/></svg><span>صور</span></button><button data-t="aud"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg><span>صوت</span></button><button data-t="code"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/></svg><span>برمجة</span></button><button data-t="video"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10l5-3v10l-5-3z"/></svg><span>فيديو</span></button><button data-t="upd"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span>إعدادات</span></button></nav><script>const VERSION=7, UPDATE_URL="https://apdalrhmanalpop.github.io/app/version.json";
 document.getElementById('ver').textContent='v'+VERSION;
 document.querySelectorAll('nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('nav button,section').forEach(e=>e.classList.remove('on'));b.classList.add('on');document.getElementById(b.dataset.t).classList.add('on')});
 const T=[["PixVerse","https://app.pixverse.ai","رصيد يومي مجاني + صوت"],["Pika","https://pika.art","كريدت مجاني"],["Luma Dream Machine","https://lumalabs.ai/dream-machine","كليبات مجانية محدودة"],["Pollo AI","https://pollo.ai","كريدت يومي صغير"],["Hedra","https://www.hedra.com","شخصيات بتتكلم"],["Higgsfield","https://higgsfield.ai","كريدت مجاني"],["Google Flow","https://labs.google/flow","حسب حسابك"],["Google Vids","https://docs.google.com/videos","حصة شهرية"],["Freepik","https://www.freepik.com/ai/video-generator","كريدت يومي"],["Leonardo","https://app.leonardo.ai","رصيد يومي"],["Krea","https://www.krea.ai","فيديو مجاني محدود"],["Dzine","https://www.dzine.ai","كريدت مجاني"]];
@@ -54,12 +55,12 @@ function add(r,t,html){const d=document.createElement('div');d.className='m '+(r
 hist.forEach(m=>add(m.role,m.content));if(!hist.length)add('assistant','أهلاً! أنا ApdalrhmanAlpop. اسألني أي حاجة بالعربي.');
 const SYS='انت ApdalrhmanAlpop، مساعد ذكي جوه تطبيق موبايل بيتكلم مصري عامية بشكل طبيعي وودود. اشرح بالتفصيل وبخطوات واضحة لما السؤال محتاج، واختصر لما السؤال بسيط. التطبيق فيه تابات: شات، وفيديو AI (روابط لمواقع بتولّد فيديو مجاناً زي PixVerse وPika وLuma وPollo وHedra وHiggsfield وFlow وVids وFreepik وLeonardo وKrea وDzine)، وتحديث. التطبيق فيه كمان تاب صور (بيولّد صور مجاناً)، وتاب صوت (بيقرا أي نص بصوت)، وتاب برمجة (بيكتب كود ويشغّل صفحات HTML). انت نفسك مبتولّدش فيديو، بس بتساعد في كل اللي حواليه: كتابة فكرة وسيناريو مشهد بمشهد، كتابة برومبت جاهز بالإنجليزي للصقه في موقع الفيديو (وصف الشخصيات والكاميرا والإضاءة والحركة والحوار)، اقتراح الموقع الأنسب وإزاي تستغل الرصيد المجاني، عناوين ووصف وهاشتاجات لليوتيوب، وأفكار قنوات. لو حد طلب فيديو، متقولش مقدرش وبس: اسأله عن الفكرة والمدة واللغة، اكتب له البرومبت، ووجهه لتاب فيديو AI يفتح الموقع المناسب. متخترعش معلومات عن حدود المواقع المجانية ولو مش متأكد قول كده.';
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-async function ask(h,own){const msgs=(h[0]&&h[0].role=='system')?h:[{role:'system',content:SYS},...h.slice(-12)];let err='';
+async function ask(h,own){const g=await tryGem(h);if(g!==null)return g;const msgs=(h[0]&&h[0].role=='system')?h:[{role:'system',content:sysNow()},...h.slice(-12)];let err='';
  const tries=[['openai','post'],['mistral','post'],['openai','get'],['llama','post']];
  for(let i=0;i<tries.length;i++){const [m,k]=tries[i];
   try{let r;const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),25000);
    if(k=='post')r=await fetch('https://text.pollinations.ai/openai',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:m,messages:msgs}),signal:ctl.signal});
-   else{const q=encodeURIComponent(msgs.slice(-4).map(x=>x.content).join('\n'));r=await fetch('https://text.pollinations.ai/'+q.slice(0,1500)+'?model='+m+'&system='+encodeURIComponent(SYS),{signal:ctl.signal})}
+   else{const q=encodeURIComponent(msgs.slice(-4).map(x=>x.content).join('\n'));r=await fetch('https://text.pollinations.ai/'+q.slice(0,1500)+'?model='+m+'&system='+encodeURIComponent(sysNow()),{signal:ctl.signal})}
    clearTimeout(to);
    if(r.status==429||r.status>=500){err='الخدمة مشغولة ('+r.status+')';await sleep(2000*(i+1));continue}
    if(!r.ok){err='خطأ '+r.status;continue}
@@ -111,7 +112,79 @@ window.runCode=(id,b)=>{const f=document.createElement('iframe');f.className='ru
 document.getElementById('fc').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('cq');const t=q.value.trim();if(!t)return;q.value='';
  cAdd(esc(t));const w=cAdd(DOTS);
  try{const a=await ask([{role:'system',content:CSYS},{role:'user',content:t}],true);w.innerHTML=renderCode(a)}catch(x){w.textContent='معرفتش أكتب الكود: '+x.message}};
+// ---- v7: gemini, vision, voice, admin ----
+function sysNow(){const i=localStorage.ins;return SYS+(i?'\nتعليمات إضافية من المالك (التزم بيها): '+i:'')}
+const GM=['gemini-3.6-flash','gemini-3.5-flash-lite'];
+async function gem(contents,system){const key=localStorage.gk;if(!key)throw new Error('nokey');let last='';
+ for(const m of GM){try{const r=await fetch('https://generativelanguage.googleapis.com/v1beta/models/'+m+':generateContent',{method:'POST',headers:{'Content-Type':'application/json','x-goog-api-key':key},body:JSON.stringify({systemInstruction:{parts:[{text:system}]},contents:contents})});
+  if(r.status==400||r.status==403){const j=await r.json().catch(()=>({}));const msg=(j.error&&j.error.message)||'';if(/API key|PERMISSION|not valid/i.test(msg)||r.status==403)throw new Error('badkey');last=msg;continue}
+  if(r.status==429||r.status==404||r.status>=500){last='busy '+r.status;continue}
+  const j=await r.json();const c=j.candidates&&j.candidates[0];const t=c&&c.content&&c.content.parts?c.content.parts.map(p=>p.text||'').join('').trim():'';if(t)return t;last='empty'}
+ catch(e){if(e.message=='badkey')throw e;last=e.message}}
+ throw new Error('gem '+last)}
+function toContents(h){return h.filter(x=>x.role!='system').slice(-12).map(x=>({role:x.role=='assistant'?'model':'user',parts:[{text:x.content}]}))}
+async function tryGem(h){if(!localStorage.gk)return null;try{const sys=(h[0]&&h[0].role=='system')?h[0].content:sysNow();return await gem(toContents(h),sys)}catch(e){if(e.message=='badkey')throw new Error('مفتاح Gemini مش شغال. غيّره من الإعدادات.');return null}}
+// attachments
+let pend=null;
+const attEl=document.getElementById('att'),fileIn=document.getElementById('fileIn');
+function showAtt(){if(!pend){attEl.style.display='none';return}attEl.style.display='flex';attEl.style.cssText='display:flex;align-items:center;gap:10px';attEl.innerHTML='<img src="'+pend.thumb+'" style="height:54px;border-radius:10px"><span style="color:var(--mut);font-size:13px">'+pend.label+'</span><button type="button" class="btn g" style="padding:6px 12px;margin-inline-start:auto" id="attx">×</button>';document.getElementById('attx').onclick=()=>{pend=null;showAtt()}}
+function frameFrom(src,w){const c=document.createElement('canvas');const k=Math.min(1,w/(src.videoWidth||src.naturalWidth||w));c.width=Math.round((src.videoWidth||src.naturalWidth)*k);c.height=Math.round((src.videoHeight||src.naturalHeight)*k);c.getContext('2d').drawImage(src,0,0,c.width,c.height);return c.toDataURL('image/jpeg',.82)}
+const b64=u=>u.split(',')[1];
+document.getElementById('attb').onclick=()=>fileIn.click();
+fileIn.onchange=async()=>{const f=fileIn.files[0];fileIn.value='';if(!f)return;const url=URL.createObjectURL(f);
+ try{if(f.type.startsWith('image/')){const im=new Image();await new Promise((ok,no)=>{im.onload=ok;im.onerror=no;im.src=url});const d=frameFrom(im,1280);pend={kind:'image',parts:[{inline_data:{mime_type:'image/jpeg',data:b64(d)}}],thumb:d,label:'صورة جاهزة'}}
+ else if(f.type.startsWith('video/')){const v=document.createElement('video');v.muted=true;v.playsInline=true;v.src=url;await new Promise((ok,no)=>{v.onloadedmetadata=ok;v.onerror=no});const n=6,fr=[];for(let i=0;i<n;i++){v.currentTime=Math.max(0.05,v.duration*(i+.5)/n);await new Promise(ok=>{v.onseeked=ok});fr.push(frameFrom(v,768))}
+  pend={kind:'video',parts:fr.map(d=>({inline_data:{mime_type:'image/jpeg',data:b64(d)}})),thumb:fr[0],label:'فيديو ('+Math.round(v.duration)+' ثانية) اتقسم لـ '+n+' لقطات'}}
+ else throw 0;showAtt()}catch(e){add('assistant','مقدرتش أقرا الملف ده.')}};
+// voice replies
+let vstop=false;
+async function speakReply(t){if(localStorage.vo!='1')return;t=t.replace(/```[\s\S]*?```/g,' ').replace(/[*#_`>]/g,'').slice(0,700);if(!t.trim())return;stopFlag=false;const lang=/[\u0600-\u06FF]/.test(t)?'ar':'en';
+ try{for(const c of chunks(t)){if(stopFlag)break;await playUrl('https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl='+lang+'&q='+encodeURIComponent(c))}}catch(e){try{await speakLocal(t)}catch(e2){}}}
+// chat
+document.getElementById('f').onsubmit=async e=>{e.preventDefault();const q=document.getElementById('q');let t=q.value.trim();if(!t&&!pend)return;q.value='';
+ const p=pend;
+ if(p){t=t||(p.kind=='video'?'دي لقطات متتالية من فيديو. اشرح اللي بيحصل فيه.':'اوصف الصورة دي بالتفصيل.');const d=add('user','',1);d.innerHTML='<img src="'+p.thumb+'" style="max-width:180px;border-radius:12px;display:block;margin-bottom:6px">'+t.replace(/</g,'&lt;');pend=null;showAtt()}else add('user',t);
+ hist.push({role:'user',content:p?('['+(p.kind=='video'?'فيديو':'صورة')+'] '+t):t});const w=add('assistant',DOTS,1);
+ try{let a;
+  if(p){if(!localStorage.gk){hist.pop();w.textContent='عشان أشوف الصور والفيديو محتاج مفتاح Gemini المجاني. افتح الإعدادات > لوحة المالك وحطه (دقيقة واحدة).';return}
+   const c=toContents(hist.slice(0,-1));c.push({role:'user',parts:[{text:(p.kind=='video'?'اللقطات دي مأخوذة بالترتيب من فيديو. ':'')+t},...p.parts]});a=await gem(c,sysNow())}
+  else a=await ask(hist);
+  w.textContent=a;hist.push({role:'assistant',content:a});localStorage.h=JSON.stringify(hist.slice(-40));speakReply(a)}
+ catch(x){hist.pop();w.textContent='معرفتش أرد: '+(x.message=='badkey'?'مفتاح Gemini مش شغال':x.message)+'. اتأكد من النت وجرب تاني بعد شوية.'}};
+// mic
+const micb=document.getElementById('micb');let listening=false,rec=null;
+function micState(on){listening=on;micb.style.boxShadow=on?'0 0 0 4px rgba(34,211,238,.5)':'';micb.style.background=on?'linear-gradient(135deg,#ef4444,#f97316)':''}
+function micErr(c){micState(false);add('assistant',c==-2?'محتاج تسمحلي بالميكروفون من إعدادات الموبايل.':c==7||c==6?'مسمعتش حاجة، جرب تاني.':c==-1?'التعرف على الصوت مش متاح على الموبايل ده.':'التعرف على الصوت فشل (كود '+c+'). اتأكد من النت.')}
+window.onSpeechPartial=t=>{document.getElementById('q').value=t};
+window.onSpeech=t=>{micState(false);const q=document.getElementById('q');q.value=t;if(t.trim())document.getElementById('f').requestSubmit()};
+window.onSpeechErr=micErr;
+micb.onclick=()=>{if(listening){micState(false);if(window.Android&&Android.stopListen)Android.stopListen();if(rec)rec.stop();return}
+ if(window.Android&&Android.canListen&&Android.canListen()){micState(true);Android.listen();return}
+ const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){add('assistant','الميكروفون محتاج تطبيق الأندرويد (النسخة 4) أو متصفح كروم.');return}
+ rec=new SR();rec.lang='ar-EG';rec.interimResults=true;rec.onresult=ev=>{const r=ev.results[ev.results.length-1];const t=r[0].transcript;if(r.isFinal)window.onSpeech(t);else window.onSpeechPartial(t)};rec.onerror=ev=>micErr(ev.error=='not-allowed'?-2:ev.error=='no-speech'?7:-1);rec.onend=()=>micState(false);micState(true);rec.start()};
+// admin panel (PIN on device only)
+let unlocked=false;
+function hsh(s){let h1=0xdeadbeef,h2=0x41c6ce57;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);h1=Math.imul(h1^c,2654435761);h2=Math.imul(h2^c,1597334677)}h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);return (h2>>>0).toString(16)+(h1>>>0).toString(16)}
+async function pinHash(p){const s=localStorage.pins||'';const str=s+':'+p;if(window.crypto&&crypto.subtle){try{const d=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){}}return hsh(str)}
+const adm=document.getElementById('admin');
+function renderAdmin(msg){const m=msg?'<p style="color:var(--b)">'+msg+'</p>':'';
+ if(!localStorage.pinh){adm.innerHTML='<div class="card" style="display:block">اعمل كود سري (4 أرقام أو أكتر) يفتح لوحة المالك. بيتخزن على موبايلك بس.<br><br><input id="pn" type="password" inputmode="numeric" placeholder="الكود" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:#fff"><br><br><button class="btn" id="pset">احفظ الكود</button>'+m+'</div>';
+  document.getElementById('pset').onclick=async()=>{const p=document.getElementById('pn').value.trim();if(p.length<4)return renderAdmin('الكود لازم 4 على الأقل');localStorage.pins=Math.random().toString(36).slice(2);localStorage.pinh=await pinHash(p);unlocked=true;renderAdmin('اتحفظ.')};return}
+ if(!unlocked){adm.innerHTML='<div class="card" style="display:block"><input id="pn" type="password" inputmode="numeric" placeholder="الكود" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:#fff"><br><br><button class="btn" id="pgo">فتح</button>'+m+'</div>';
+  document.getElementById('pgo').onclick=async()=>{if(await pinHash(document.getElementById('pn').value.trim())===localStorage.pinh){unlocked=true;renderAdmin()}else renderAdmin('الكود غلط')};return}
+ const k=localStorage.gk?'متسجل (••••'+localStorage.gk.slice(-4)+')':'مش متسجل';
+ adm.innerHTML='<div class="card" style="display:block"><b>مفتاح Gemini المجاني</b> <small>'+k+'</small><br>بيفتح رؤية الصور والفيديو وشات أقوى. اعمله من <a href="https://aistudio.google.com/apikey" target="_blank" style="color:var(--b)">aistudio.google.com/apikey</a> وألصقه هنا. بيتخزن على موبايلك بس.<br><br><input id="gk" type="password" placeholder="الصق المفتاح" style="width:100%;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--card2);color:#fff;direction:ltr"><br><br><button class="btn" id="gks">حفظ المفتاح</button> <button class="btn g" id="gkd">مسح</button></div>'+
+ '<div class="card" style="display:block"><b>تعليمات للمساعد</b><br><small>اكتب اللي عايزه يلتزم بيه دايماً (أسلوب، معلومات عنك...)</small><br><br><textarea id="ins" rows="4" style="width:100%">'+(localStorage.ins||'').replace(/</g,'&lt;')+'</textarea><br><br><button class="btn" id="inss">حفظ التعليمات</button></div>'+
+ '<div class="card" style="display:block"><label><input type="checkbox" id="vo" '+(localStorage.vo=='1'?'checked':'')+'> اقرا ردود الشات بصوت</label></div>'+
+ '<button class="btn g" id="plock">قفل اللوحة</button> <button class="btn g" id="preset">مسح الكود والبيانات</button>'+m;
+ document.getElementById('gks').onclick=()=>{const v=document.getElementById('gk').value.trim();if(v.length<20)return renderAdmin('المفتاح قصير، اتأكد إنك نسخته كامل');localStorage.gk=v;renderAdmin('اتحفظ المفتاح.')};
+ document.getElementById('gkd').onclick=()=>{delete localStorage.gk;renderAdmin('اتمسح.')};
+ document.getElementById('inss').onclick=()=>{localStorage.ins=document.getElementById('ins').value.trim();renderAdmin('اتحفظت.')};
+ document.getElementById('vo').onchange=ev=>{localStorage.vo=ev.target.checked?'1':'0'};
+ document.getElementById('plock').onclick=()=>{unlocked=false;renderAdmin()};
+ document.getElementById('preset').onclick=()=>{if(confirm('هيمسح الكود والمفتاح والتعليمات من الموبايل ده. متأكد؟')){['pinh','pins','gk','ins','vo'].forEach(x=>delete localStorage[x]);unlocked=false;renderAdmin('اتمسح كل حاجة.')}}}
+renderAdmin();
 async function checkUpdate(){const s=document.getElementById('us');const av=(window.Android&&Android.appVersion)?Android.appVersion():0;
-try{const j=await (await fetch(UPDATE_URL+'?t='+Date.now())).json();if(j.apk_version>av){s.innerHTML='فيه نسخة تطبيق جديدة (شكل جديد وأيقونة جديدة). <br><br><button class="btn" onclick="Android.download(\''+j.apk+'\')">حمّلها</button>'}else{s.textContent='التطبيق محدّث. نسخة الواجهة '+VERSION+' بتتحدث لوحدها.'}}catch(e){s.textContent='مقدرتش أتصل بالتحديث.'}}
+try{const j=await (await fetch(UPDATE_URL+'?t='+Date.now())).json();if(j.apk_version>av){s.innerHTML='فيه نسخة تطبيق جديدة (ميكروفون وتعرف على الصوت وإرفاق صور وفيديو). <br><br><button class="btn" onclick="Android.download(\''+j.apk+'\')">حمّلها</button>'}else{s.textContent='التطبيق محدّث. نسخة الواجهة '+VERSION+' بتتحدث لوحدها.'}}catch(e){s.textContent='مقدرتش أتصل بالتحديث.'}}
 checkUpdate();
 </script></body></html>
